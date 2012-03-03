@@ -31,6 +31,7 @@ module Foursquare
 
     def get(path, params={})
       params = camelize(params)
+      params["v"] = "20120101"
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)

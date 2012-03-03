@@ -86,6 +86,12 @@ module Foursquare
       end
     end
     
+    def all_menus(options={})
+      @foursquare.get("venues/#{id}/menu", options)["menu"]["menus"]["items"].map do |item|
+        Foursquare::Menu.new(@foursquare, item)
+      end
+    end
+
     # count the people who have checked-in at the venue in the last two hours
     def here_now_count
       fetch unless @json.has_key?("hereNow")
